@@ -1,9 +1,13 @@
+import Contact from "./Contact";
+import Education from "./Education";
 import Experience from "./Experience";
+import Post from "./Post";
+import Skills from "./Skills";
 
 const HistoryUser = () => {
   return (
-    <div className="w-full bg-red-200">
-      <div className="p-4">
+    <div className="w-full h-max rounded bg-white">
+      <div className="px-4 pt4">
         <div>
           <ul className="flex justify-between items-center text-2xl text-slate-400 mb-3">
             <li className="border-b-2 w-full border-slate-900 text-center ">
@@ -33,8 +37,7 @@ const HistoryUser = () => {
             </li>
           </ul>
         </div>
-
-        <Experience />
+        <Contact />
       </div>
     </div>
   );

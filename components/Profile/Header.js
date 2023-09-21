@@ -29,7 +29,7 @@ const Header = () => {
       <button className="text-2xl">
         <ion-icon name="notifications-outline"></ion-icon>
       </button>
-      <div className="flex items-center justify-center border border-slate-900 w-28 h-10  rounded">
+      <div className="flex items-center justify-center border border-slate-900 w-28 h-10 rounded">
         <Image src={Avatar} alt="profile-avatar" className="w-5/6 h-5/6" />
         <button>
           <ion-icon name="chevron-down-outline"></ion-icon>

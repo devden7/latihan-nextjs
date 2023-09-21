@@ -1,6 +1,6 @@
 const ProfileStatus = () => {
   return (
-    <div className="bg-red-200 rounded p-4">
+    <div className="bg-white rounded p-4">
       <div className="flex justify-between items-center">
         <h1 className="text-lg font-semibold mb-2">Profile Status</h1>
         <ion-icon name="ellipsis-horizontal"></ion-icon>

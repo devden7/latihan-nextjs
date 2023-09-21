@@ -25,7 +25,7 @@ const ProfileInfo = () => {
         <div className="relative flex flex-col gap-2 justify-center items-center">
           <div className=" bg-emerald-600 w-52 h-52 rounded-b-full absolute -top-36 p-4">
             <div className="bg-blue-50 rounded-b-full relative">
-              <div className="opacity-0 rounded-b-full h-full w-full absolute text-center  leading-[10rem] hover:bg-black hover:opacity-60 hover:cursor-pointer">
+              <div className="opacity-0 rounded-b-full h-full w-full absolute text-center leading-[10rem] hover:bg-black hover:opacity-60 hover:cursor-pointer">
                 <button className=" text-slate-400 text-2xl">
                   <ion-icon name="create-outline"></ion-icon>
                 </button>
