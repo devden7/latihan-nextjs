@@ -7,7 +7,7 @@ import PicturePostDua from "../../public/picture2-from-unsplash.jpg";
 
 const postArr = [
   {
-    id: 1,
+    id: 0,
     creator: "Dena Sudarajat",
     profesi: "Junior Web Developer",
     tanggalDibuat: "2 Hours ago",
@@ -18,9 +18,10 @@ const postArr = [
     like: "Users and 50 others likes this",
     panjangKomen: 40,
     totalShare: 24,
+    isLike: false,
   },
   {
-    id: 2,
+    id: 1,
     creator: "Dena Sudarajat",
     profesi: "Junior Web Developer",
     tanggalDibuat: "2 Hours ago",
@@ -31,9 +32,10 @@ const postArr = [
     like: "Users and 50 others likes this",
     panjangKomen: 40,
     totalShare: 24,
+    isLike: false,
   },
   {
-    id: 3,
+    id: 2,
     creator: "Dena Sudarajat",
     profesi: "Junior Web Developer",
     tanggalDibuat: "2 Hours ago",
@@ -44,9 +46,10 @@ const postArr = [
     like: "Users and 50 others likes this",
     panjangKomen: 40,
     totalShare: 24,
+    isLike: false,
   },
   {
-    id: 4,
+    id: 3,
     creator: "Dena Sudarajat",
     profesi: "Junior Web Developer",
     tanggalDibuat: "2 Hours ago",
@@ -57,11 +60,14 @@ const postArr = [
     like: "Users and 50 others likes this",
     panjangKomen: 40,
     totalShare: 24,
+    isLike: false,
   },
 ];
 
 const Post = () => {
   const [posts] = useState(postArr);
+  const [isLike, setIsLike] = useState({});
+  const [isComment, setIsComment] = useState({});
   const [text] = useState(
     "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae facere sequi ipsam cum odit quos mollitia enim blanditiis labore veniam excepturi itaque necessitatibus illum consequuntur voluptas laborum maxime aut, ab dolorum sunt. Eum corporis expedita nihil, perspiciatis quibusdam veniam eaque cum adipisci aut? Magni non facere ullam nisi cumque eaque quos totam cum consectetur rem iusto in doloremque sapiente, veritatis commodi natus voluptatibus voluptatum aliquam neque repellat. Soluta ipsam minima maxime commodi quae, earum error aperiam excepturi, distinctio tempore sequi repellendus sed dolorem, blanditiis inventore exercitationem harum! Necessitatibus explicabo sit, assumenda molestiae optio quam fugiat corrupti, minima rem minus placeat!"
   );
@@ -71,6 +77,20 @@ const Post = () => {
     setSeeMoreBtn(!seeMoreBtn);
   };
 
+  const likeButtonHandler = (itemId) => {
+    setIsLike((prev) => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+  };
+
+  const commentButtonHandler = (itemId) => {
+    setIsComment((prev) => ({
+      ...prev,
+      [itemId]: !prev[itemId],
+    }));
+    console.log(isComment);
+  };
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -194,30 +214,233 @@ const Post = () => {
                 <div className="h-[1px] w-full bg-slate-400 mb-3">
                   <span></span>
                 </div>
-                <div className="flex justify-around">
-                  <div className="flex gap-2 items-center cursor-pointer hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 text-center justify-center w-full">
-                    <span className="text-3xl pt-2">
-                      <ion-icon name="heart-outline"></ion-icon>
+                <div className="flex justify-around mb-5">
+                  <div
+                    onClick={likeButtonHandler.bind(null, post.id)}
+                    className={`text-slate-900 flex gap-2 items-center cursor-pointer hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 ${
+                      isLike[post.id]
+                        ? "hover:bg-transparent hover:text-slate-900"
+                        : ""
+                    } text-center justify-center w-full`}
+                  >
+                    <span
+                      className={`text-3xl pt-2 ${
+                        isLike[post.id] ? "text-red-500" : ""
+                      }`}
+                    >
+                      {isLike[post.id] && <ion-icon name="heart"></ion-icon>}
+                      {!isLike[post.id] && (
+                        <ion-icon name="heart-outline"></ion-icon>
+                      )}
                     </span>
                     <button>Like</button>
                   </div>
-                  <div className="flex gap-2 items-center cursor-pointer  hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 text-center justify-center w-full">
+                  <div
+                    onClick={commentButtonHandler.bind(null, post.id)}
+                    className="text-slate-900 flex gap-2 items-center cursor-pointer  hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 text-center justify-center w-full"
+                  >
                     <span className="text-3xl pt-2">
                       <ion-icon name="chatbox-outline"></ion-icon>
                     </span>
                     <button>Comment</button>
                   </div>
-                  <div className="flex gap-2 items-center cursor-pointer  hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 text-center justify-center w-full">
+                  <div className="text-slate-900 flex gap-2 items-center cursor-pointer  hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 text-center justify-center w-full">
                     <span className="text-3xl pt-2">
                       <ion-icon name="share-social-outline"></ion-icon>
                     </span>
                     <button>Share</button>
                   </div>
-                  <div className="flex gap-2 items-center cursor-pointer hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 text-center justify-center w-full">
+                  <div className="text-slate-900 flex gap-2 items-center cursor-pointer hover:bg-gray-100 hover:rounded-xl hover:text-slate-500 transition duration-200 text-center justify-center w-full">
                     <span className="text-3xl pt-2">
                       <ion-icon name="bookmark-outline"></ion-icon>
                     </span>
                     <button>Save</button>
+                  </div>
+                </div>
+                <div
+                  className={`overflow-hidden transition-[height] duration-300 ease ${
+                    isComment[post.id] ? "h-[42rem]" : "h-0"
+                  } `}
+                >
+                  <div className="bg-gray-200 flex justify-between gap-2 items-center rounded-full px-3">
+                    <input
+                      type="text"
+                      placeholder="Add a comment..."
+                      id="comment"
+                      className="p-2 w-full bg-transparent focus:outline-none"
+                    />
+                    <span className="text-4xl -rotate-45 text-slate-600">
+                      <ion-icon name="attach-outline"></ion-icon>
+                    </span>
+                    <div>
+                      <button className="text-white text-sm bg-emerald-600 rounded px-6 py-1 hover:bg-emerald-500 transition duration-200">
+                        Post
+                      </button>
+                    </div>
+                  </div>
+                  <div className="cursor-pointer  flex gap-2 items-center justify-center text-slate-400 font-medium my-4">
+                    <p>Most Relevan</p>
+                    <span className="pt-2">
+                      <ion-icon name="chevron-down-outline"></ion-icon>
+                    </span>
+                  </div>
+                  <ul>
+                    <li className="flex gap-2 mb-3">
+                      <div className="w-14">
+                        <Image src={Avatar} alt="avatar-user-comment" />
+                      </div>
+                      <div className="w-full">
+                        <div className="bg-gray-200 p-2 rounded-lg">
+                          <div className="flex justify-between">
+                            <div className="mb-2">
+                              <h5 className="font-semibold text-slate-800">
+                                Example Comment 1
+                              </h5>
+                              <p className="text-xs text-slate-500">
+                                UI/UX Designer at Google.com
+                              </p>
+                            </div>
+                            <div className="flex gap-2 items-center">
+                              <p className="text-xs">2d</p>
+                              <span className="text-2xl text-slate-500  pt-2">
+                                <ion-icon name="ellipsis-horizontal"></ion-icon>
+                              </span>
+                            </div>
+                          </div>
+                          <p className="text-sm text-slate-900">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Sequi deserunt quae doloremque temporibus
+                          </p>
+                        </div>
+                        <div className="flex gap-2 text-xs text-slate-950 mt-2">
+                          <p>Like</p>
+                          <p>|</p>
+                          <p>Reply</p>
+                          <p>1 Reply</p>
+                        </div>
+                        <ul className="mt-3">
+                          <li className="flex gap-2">
+                            <div className="w-12">
+                              <Image src={Avatar} alt="avatar-user-comment" />
+                            </div>
+                            <div className="w-full">
+                              <div className="bg-gray-200 p-2 rounded-lg">
+                                <div className="flex justify-between">
+                                  <div className="mb-2">
+                                    <h5 className="font-semibold text-slate-800">
+                                      Example Reply 1
+                                    </h5>
+                                    <p className="text-xs text-slate-500">
+                                      Project Manager at Google.com
+                                    </p>
+                                  </div>
+                                  <div className="flex gap-2 items-center">
+                                    <p className="text-xs">2d</p>
+                                    <span className="text-2xl text-slate-500  pt-2">
+                                      <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                    </span>
+                                  </div>
+                                </div>
+                                <p className="text-sm text-slate-900">
+                                  Lorem ipsum dolor sit, amet consectetur
+                                  adipisicing elit. Illum beatae voluptate vero
+                                  doloribus dolore aut, ex ipsam, delectus
+                                  perspiciatis voluptatem mollitia architecto in
+                                  debitis animi.
+                                </p>
+                              </div>
+                              <div className="flex gap-2 text-xs text-slate-950 mt-2">
+                                <p>Like</p>
+                                <p>|</p>
+                                <p>Reply</p>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+
+                    <li className="flex gap-2">
+                      <div className="w-14">
+                        <Image src={Avatar} alt="avatar-user-comment" />
+                      </div>
+                      <div className="w-full">
+                        <div className="bg-gray-200 p-2 rounded-lg">
+                          <div className="flex justify-between">
+                            <div className="mb-2">
+                              <h5 className="font-semibold text-slate-800">
+                                Example Comment 2
+                              </h5>
+                              <p className="text-xs text-slate-500">
+                                Senior Enginer at Google.com
+                              </p>
+                            </div>
+                            <div className="flex gap-2 items-center">
+                              <p className="text-xs">2d</p>
+                              <span className="text-2xl text-slate-500  pt-2">
+                                <ion-icon name="ellipsis-horizontal"></ion-icon>
+                              </span>
+                            </div>
+                          </div>
+                          <p className="text-sm text-slate-900">
+                            Lorem, ipsum dolor sit amet consectetur adipisicing
+                            elit. Sequi deserunt quae doloremque temporibus
+                            adipisci minima ullam repellat ad quisquam
+                            consequatur fuga, aut blanditiis optio provident
+                            neque dolores amet obcaecati distinctio velit. Illo
+                            perspiciatis, molestias eligendi itaque quasi
+                            delectus reiciendis, dolore, accusamus a vel facilis
+                            quia nam recusandae laudantium porro sed!
+                          </p>
+                        </div>
+                        <div className="flex gap-2 text-xs text-slate-950 mt-2">
+                          <p>Like</p>
+                          <p>|</p>
+                          <p>Reply</p>
+                          <p>1 Reply</p>
+                        </div>
+                        <ul className="mt-3">
+                          <li className="flex gap-2">
+                            <div className="w-12">
+                              <Image src={Avatar} alt="avatar-user-comment" />
+                            </div>
+                            <div className="w-full">
+                              <div className="bg-gray-200 p-2 rounded-lg">
+                                <div className="flex justify-between">
+                                  <div className="mb-2">
+                                    <h5 className="font-semibold text-slate-800">
+                                      Example Reply 2
+                                    </h5>
+                                    <p className="text-xs text-slate-500">
+                                      Project Manager at Google.com
+                                    </p>
+                                  </div>
+                                  <div className="flex gap-2 items-center">
+                                    <p className="text-xs">2d</p>
+                                    <span className="text-2xl text-slate-500 pt-2">
+                                      <ion-icon name="ellipsis-horizontal"></ion-icon>
+                                    </span>
+                                  </div>
+                                </div>
+                                <p className="text-sm text-slate-900">
+                                  Lorem ipsum dolor sit
+                                </p>
+                              </div>
+                              <div className="flex gap-2 text-xs text-slate-950 mt-2">
+                                <p>Like</p>
+                                <p>|</p>
+                                <p>Reply</p>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <div className="text-slate-800 text-sm font-medium flex justify-between mt-3">
+                    <p>Load more comments{" >>"}</p>
+                    <p>Add comment</p>
                   </div>
                 </div>
               </li>
