@@ -30,7 +30,7 @@ const ProfileInfo = () => {
                   <ion-icon name="create-outline"></ion-icon>
                 </button>
               </div>
-              <Image src={Avatar} />
+              <Image src={Avatar} alt="profile-picture" />
             </div>
           </div>
           <div className="flex items-center gap-3 mt-20">
@@ -49,18 +49,18 @@ const ProfileInfo = () => {
             <p>|</p>
             <p>Bandung, Jawa Barat, Indonesia</p>
           </div>
-          <button className=" bg-emerald-600 rounded border-slate-800 px-7 py-1 hover:bg-emerald-500 transition duration-200">
+          <button className="text-white bg-emerald-600 rounded border-slate-800 px-7 py-1 hover:bg-emerald-500 transition duration-200">
             Button
           </button>
         </div>
         <div className="flex flex-col gap-1">
-          <button className="border border-b-2 border-r-2 rounded border-slate-800 px-7 py-1 hover:bg-emerald-500 hover:border-none transition duration-200">
+          <button className="border border-b-2 border-r-2 rounded border-slate-800 px-7 py-1 hover:bg-emerald-500 hover:border-transparent transition duration-200">
             Button
           </button>
-          <button className="border border-b-2 border-r-2 rounded border-slate-800 px-7 py-1 hover:bg-emerald-500 hover:border-none transition duration-200">
+          <button className="border border-b-2 border-r-2 rounded border-slate-800 px-7 py-1 hover:bg-emerald-500 hover:border-transparent transition duration-200">
             Button
           </button>
-          <button className=" bg-emerald-600 rounded border-slate-800 px-7 py-1 hover:bg-emerald-500 transition duration-200">
+          <button className="text-white bg-emerald-600 rounded px-7 py-1 hover:bg-emerald-500 transition duration-200">
             Button
           </button>
         </div>
