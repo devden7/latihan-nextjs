@@ -3,6 +3,7 @@ import PhotoCover from "./PhotoCover";
 import Header from "./Header";
 import ProfileInfo from "./ProfileInfo";
 import UserInformation from "./UserInformation";
+import Footer from "./Footer";
 
 const MainApp = () => {
   return (
@@ -13,6 +14,7 @@ const MainApp = () => {
         <ProfileInfo />
         <UserInformation />
       </main>
+      <Footer />
     </Fragment>
   );
 };

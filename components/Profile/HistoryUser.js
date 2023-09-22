@@ -12,7 +12,7 @@ const HistoryUser = () => {
   };
   console.log(componentState);
   return (
-    <div className="w-full h-max rounded bg-white">
+    <div className="w-full h-max rounded bg-white mb-8">
       <div className="px-4 pt4">
         <div>
           <ul className="flex justify-between items-center text-2xl text-slate-400 my-4">
