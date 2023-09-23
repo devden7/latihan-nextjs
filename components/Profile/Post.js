@@ -89,7 +89,6 @@ const Post = () => {
       ...prev,
       [itemId]: !prev[itemId],
     }));
-    console.log(isComment);
   };
   return (
     <div>

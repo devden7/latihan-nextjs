@@ -5,12 +5,12 @@ import Experience from "./Experience";
 import Post from "./Post";
 import Skills from "./Skills";
 
-const HistoryUser = () => {
+const HistoryUser = (props) => {
   const [componentState, setComponentState] = useState("experience");
   const contentHandler = (item) => {
     setComponentState(item);
   };
-  console.log(componentState);
+
   return (
     <div className="w-full h-max rounded bg-white mb-8">
       <div className="px-4 pt4">
@@ -98,7 +98,13 @@ const HistoryUser = () => {
             </li>
           </ul>
         </div>
-        {componentState === "experience" && <Experience />}
+        {componentState === "experience" && (
+          <Experience
+            isModal={props.isModal}
+            modalOpenBtn={props.modalOpenBtn}
+            modalCloseBtn={props.modalCloseBtn}
+          />
+        )}
         {componentState === "education" && <Education />}
         {componentState === "skill" && <Skills />}
         {componentState === "postList" && <Post />}
